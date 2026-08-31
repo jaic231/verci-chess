@@ -1,0 +1,21 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <title>Verci Chess knight</title>
+
+  <!-- Verci's four-piece mark -->
+  <path d="M16 16H6.25C3.9 16 2 14.1 2 11.75V6.25C2 3.9 3.9 2 6.25 2H11.75C14.1 2 16 3.9 16 6.25V16Z" fill="#2E9EFF"/>
+  <rect x="21" y="2" width="9" height="9" rx="3" fill="#0C79D8"/>
+  <rect x="2" y="21" width="9" height="9" rx="3" fill="#0C79D8"/>
+  <path d="M30 25.75C30 28.1 28.1 30 25.75 30H20.25C17.9 30 16 28.1 16 25.75V16H25.75C28.1 16 30 17.9 30 20.25V25.75Z" fill="#68C4FF"/>
+
+  <!-- A custom knight silhouette, outlined so it stays crisp at favicon size -->
+  <path
+    d="M10.15 25.1H23.35V27.5H8.65C7.85 27.5 7.42 26.58 7.92 25.95L10.15 23.15C11.2 21.83 11.68 20.13 11.47 18.45C11.3 17.08 10.68 15.8 9.7 14.82L7.65 12.77L11.45 5.35L14.33 6.65L18.05 4.35L18.62 8.03C22.08 8.98 24.55 12.13 24.55 15.78C24.55 17.52 23.98 19.2 22.93 20.58L19.52 25.1H10.15Z"
+    fill="#F7FAFC"
+    stroke="#173C5B"
+    stroke-width="1.35"
+    stroke-linejoin="round"
+    paint-order="stroke fill"
+  />
+  <path d="M17.95 12.05L21.2 13.18L19.2 15.05L16.4 14.42L17.95 12.05Z" fill="#173C5B"/>
+  <circle cx="15.3" cy="10.15" r="1.05" fill="#173C5B"/>
+</svg>

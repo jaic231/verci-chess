@@ -1,0 +1,28 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "verci-chess",
+  "main": "./worker/index.ts",
+  "compatibility_date": "2026-08-31",
+  "compatibility_flags": ["nodejs_compat"],
+  "routes": [
+    { "pattern": "vercichess.com/*", "zone_name": "vercichess.com" },
+    { "pattern": "www.vercichess.com", "custom_domain": true }
+  ],
+  "assets": {
+    "binding": "ASSETS",
+    "directory": "./public"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "verci-chess",
+      "database_id": "60830487-5936-4057-a4d0-9837380cd256",
+      "migrations_dir": "./drizzle"
+    }
+  ],
+  "observability": {
+    "enabled": true,
+    "logs": { "head_sampling_rate": 1 },
+    "traces": { "enabled": true, "head_sampling_rate": 0.01 }
+  }
+}

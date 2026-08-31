@@ -1,0 +1,53 @@
+name: Verify and deploy
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: verci-chess-production
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  verify-and-deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22.13.0
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Check types
+        run: npx tsc --noEmit
+
+      - name: Build and test
+        run: npm test
+
+      - name: Deploy tested build to Cloudflare
+        if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+        run: npx wrangler deploy --config dist/server/wrangler.json
+        env:
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+
+      - name: Verify production
+        if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+        run: curl --fail --silent --show-error --retry 5 --retry-delay 5 --retry-all-errors https://vercichess.com/api/state > /dev/null

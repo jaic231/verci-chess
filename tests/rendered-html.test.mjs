@@ -22,7 +22,22 @@ test("server-renders the focused Verci Chess leaderboard", async () => {
   assert.match(html, /VERCI CHESS/);
   assert.match(html, /Leaderboard/);
   assert.match(html, /Enter match/);
+  assert.match(html, /3D board/);
   assert.doesNotMatch(html, /Recent games|coffee/i);
+});
+
+test("includes an interactive downloadable chess-board model", async () => {
+  const [page, scene, model] = await Promise.all([
+    readFile(new URL("../app/board/page.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/board/ChessBoardScene.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/board/chess-board-model.ts", import.meta.url), "utf8"),
+  ]);
+  assert.match(page, /Folding chess set/);
+  assert.match(scene, /OrbitControls/);
+  assert.match(scene, /GLTFExporter/);
+  assert.match(scene, /Download model/);
+  assert.match(model, /Verci folding chess board/);
+  assert.match(model, /photoPosition/);
 });
 
 test("ranks only participants and weights a first result", async () => {

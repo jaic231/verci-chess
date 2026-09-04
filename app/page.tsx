@@ -214,7 +214,10 @@ export default function Home() {
     <main className="page-shell">
       <header className="topbar">
         <a className="wordmark" href="#top" aria-label="Verci Chess home"><span aria-hidden="true">♞</span><b>VERCI CHESS</b></a>
-        <button className="match-button" type="button" onClick={() => setModalOpen(true)}><span>＋</span> Enter match</button>
+        <div className="topbar-actions">
+          <a className="model-link" href="/board"><span aria-hidden="true">◈</span> 3D board</a>
+          <button className="match-button" type="button" onClick={() => setModalOpen(true)}><span>＋</span> Enter match</button>
+        </div>
       </header>
 
       <section className="leaderboard" id="top">

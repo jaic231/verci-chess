@@ -62,7 +62,7 @@ export default function ChessBoardScene() {
       renderer.toneMapping = THREE.ACESFilmicToneMapping;
       renderer.toneMappingExposure = 1.08;
       renderer.shadowMap.enabled = true;
-      renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+      renderer.shadowMap.type = THREE.PCFShadowMap;
       renderer.domElement.setAttribute("aria-label", "Interactive three-dimensional wooden chess board");
       renderer.domElement.setAttribute("role", "img");
       mount.appendChild(renderer.domElement);
@@ -120,10 +120,9 @@ export default function ChessBoardScene() {
       observer.observe(mount);
       resize();
 
-      const clock = new THREE.Clock();
       let firstFrame = true;
       const render = () => {
-        controls.update(clock.getDelta());
+        controls.update();
         renderer.render(scene, camera);
         if (firstFrame) {
           firstFrame = false;
